@@ -1,0 +1,29 @@
+import React from "react";
+import { FaHamburger } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+
+const Navbar = () => {
+  return (
+    <div className="flex items-center justify-between py-5 px-7 ">
+      <div className="bg-white w-15 h-15 flex justify-center items-center rounded-md ">
+        <FaHamburger className="text-green-500 text-2xl " />
+      </div>
+
+      <div className="w-[60%] h-15 flex items-center justify-start border rounded-md gap-3 pl-4">
+        <FaSearch className="text-green-500 text-xl " />
+        <input
+          type="text"
+          placeholder="Search Items..."
+          className="outline-none text-xl input-bordered w-24 md:w-auto"
+        />
+      </div>
+
+      <div className="bg-white w-15 h-15 flex justify-center items-center  rounded-md cursor-pointer active:scale-95">
+        <FaCartPlus className="text-green-500 text-2xl " />
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
