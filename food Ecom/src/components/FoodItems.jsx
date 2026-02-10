@@ -5,19 +5,23 @@ import Card from "./Card";
 const FoodItems = ({ foodItems }) => {
   return (
     <div className="flex items-center justify-center flex-wrap gap-7 my-8">
-      {foodItems.map((item) => {
-        return (
-          <div key={item.id}>
-            <Card
-              id={item.id}
-              foodImage={item.food_image}
-              foodName={item.food_name}
-              foodType={item.food_type}
-              price={item.price}
-            />
-          </div>
-        );
-      })}
+      {foodItems.length > 1 ? (
+        foodItems.map((item) => {
+          return (
+            <div key={item.id}>
+              <Card
+                id={item.id}
+                foodImage={item.food_image}
+                foodName={item.food_name}
+                foodType={item.food_type}
+                price={item.price}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <div className="text-center text-3xl text-green-400 font-semibold pt-5">No dish Found!</div>
+      )}
     </div>
   );
 };

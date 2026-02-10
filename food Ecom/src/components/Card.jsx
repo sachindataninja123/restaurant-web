@@ -4,6 +4,7 @@ import { LuVegan } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { AddItem } from "./redux/features/cartSlice";
+import { toast } from "react-toastify";
 
 const Card = ({ id, foodImage, foodName, foodType, price }) => {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ const Card = ({ id, foodImage, foodName, foodType, price }) => {
                 price: price,
                 qty: 1,
               }),
+              toast.success("Item Added!"),
             )
           }
         >

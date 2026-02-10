@@ -1,6 +1,11 @@
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { RemoveItem } from "./redux/features/cartSlice";
+import {
+  DecrementQty,
+  IncrementQty,
+  RemoveItem,
+} from "./redux/features/cartSlice";
+import { toast } from "react-toastify";
 
 const Card2 = ({ name, price, image, id, qty }) => {
   let dispatch = useDispatch();
@@ -14,13 +19,19 @@ const Card2 = ({ name, price, image, id, qty }) => {
         <div className="w-[40%] h-full flex flex-col gap-3 text-black">
           <div className="text-lg font-semibold text-gray-500">{name}</div>
           <div className="w-30 h-12.5 bg-slate-400 flex rounded-lg overflow-hidden shadow-lg font-semibold border-2 border-green-400 text-xl">
-            <button className="h-full bg-white w-[30%]  flex justify-center items-center text-green-400 hover:bg-gray-200 cursor-pointer transition-all">
+            <button
+              className="h-full bg-white w-[30%]  flex justify-center items-center text-green-400 hover:bg-gray-200 cursor-pointer transition-all"
+              onClick={() => (qty > 1 ? dispatch(DecrementQty(id)) : 1)}
+            >
               -
             </button>
             <span className="h-full bg-slate-200 w-[40%] flex justify-center items-center  text-green-400 ">
               {qty}
             </span>
-            <button className="h-full bg-white w-[30%]  flex justify-center items-center  text-green-400 hover:bg-gray-200 cursor-pointer transition-all ">
+            <button
+              className="h-full bg-white w-[30%]  flex justify-center items-center  text-green-400 hover:bg-gray-200 cursor-pointer transition-all "
+              onClick={() => dispatch(IncrementQty(id))}
+            >
               +
             </button>
           </div>
@@ -30,7 +41,7 @@ const Card2 = ({ name, price, image, id, qty }) => {
         <span className="text-xl text-green-500 font-semibold">
           Rs {price}/-
         </span>
-        <span>
+        <span onClick={() => toast.success("Item removed!")}>
           <MdDelete
             onClick={() => dispatch(RemoveItem(id))}
             className="w-7.5 h-7.5 text-red-400 cursor-pointer active:scale-95"
