@@ -2,8 +2,12 @@ import React from "react";
 import image1 from "../assets/image1.avif";
 import { LuVegan } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { AddItem } from "./redux/features/cartSlice";
 
-const Card = ({ foodImage, foodName, foodType, price }) => {
+const Card = ({ id, foodImage, foodName, foodType, price }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="w-80 h-100 border rounded-md p-3 flex flex-col gap-3 bg-gray-800 border-green-300">
       <div className="rounded-md overflow-hidden">
@@ -28,7 +32,20 @@ const Card = ({ foodImage, foodName, foodType, price }) => {
         </p>
       </div>
       <div className="mt-5">
-        <button className="cursor-pointer active:scale-95 text-center bg-green-500 w-full py-2 rounded-md font-semibold hover:bg-green-600 transition-all ">
+        <button
+          className="cursor-pointer active:scale-95 text-center bg-green-500 w-full py-2 rounded-md font-semibold hover:bg-green-600 transition-all "
+          onClick={() =>
+            dispatch(
+              AddItem({
+                id: id,
+                name: foodName,
+                image: foodImage,
+                price: price,
+                qty: 1,
+              }),
+            )
+          }
+        >
           Add to Dish
         </button>
       </div>

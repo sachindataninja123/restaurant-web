@@ -3,8 +3,16 @@ import { FaHamburger } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { food_items } from "./DataItems";
+import { dataContext } from "../context/UserContext";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ input, setInput }) => {
+
+  const {showCart , setShowCart} = useContext(dataContext);
+
+  let items = useSelector(state => state.cart)
+
+
   return (
     <div className="flex items-center justify-between py-5 px-7 ">
       <div className="bg-white w-15 h-15 flex justify-center items-center rounded-md ">
@@ -25,8 +33,9 @@ const Navbar = ({ input, setInput }) => {
         />
       </form>
 
-      <div className="bg-white w-15 h-15 flex justify-center items-center  rounded-md cursor-pointer active:scale-95">
-        <FaCartPlus className="text-green-500 text-2xl " />
+      <div className="bg-white w-15 h-15 flex justify-center items-center  rounded-md cursor-pointer active:scale-95 relative" onClick={() => setShowCart(true)}>
+        <FaCartPlus  className="text-green-500 text-2xl " />
+        <span className="text-green-500 font-semibold text-[17px] absolute top-1 right-2">{items.length}</span>
       </div>
     </div>
   );

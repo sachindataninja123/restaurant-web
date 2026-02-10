@@ -1,23 +1,20 @@
-// import React, { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-// export const dataContext = createContext();
+export const dataContext = createContext();
 
-// const UserContext = ({ children }) => {
-//   let [input, setInput] = useState("");
-//   const [selectedCategory, setSelectedCategory] = useState("All");
+const UserContext = ({ children }) => {
+  let [showCart, setShowCart] = useState(false);
 
-//   let data = {
-//     input,
-//     setInput,
-//     selectedCategory,
-//     setSelectedCategory,
-//   };
+  let data = {
+    showCart,
+    setShowCart
+  };
 
-//   return (
-//     <div>
-//       <dataContext.Provider value={data}>{children}</dataContext.Provider>{" "}
-//     </div>
-//   );
-// };
+  return (
+    <div>
+      <dataContext.Provider value={data}>{children}</dataContext.Provider>{" "}
+    </div>
+  );
+};
 
-// export default UserContext;
+export default UserContext;
