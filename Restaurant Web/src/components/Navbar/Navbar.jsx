@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import { assets } from "../../assets/assets";
+
+const Navbar = () => {
+  const [menu, setMenu] = useState("home");
+
+  return (
+    <div className="py-5 px-0 flex justify-between items-center">
+      <img src={assets.logo} alt="" className="w-37.5 " />
+      <ul className="flex list-none gap-5 uppercase text-[#49557e] ">
+        <li
+          onClick={() => setMenu("home")}
+          className={`${menu === "home" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
+        >
+          Home
+        </li>
+        <li
+          onClick={() => setMenu("menu")}
+          className={`${menu === "menu" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
+        >
+          menu
+        </li>
+        <li
+          onClick={() => setMenu("mobile-app")}
+          className={`${menu === "mobile-app" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
+        >
+          mobile-app
+        </li>
+        <li
+          onClick={() => setMenu("contact-us")}
+          className={`${menu === "contact-us" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
+        >
+          contact-us
+        </li>
+      </ul>
+      <div className="flex items-center gap-8 ">
+        <img src={assets.search_icon} alt="" />
+        <div className="relative"  >
+          <img src={assets.basket_icon} alt="" />
+          <div className="absolute -top-4 -right-2 text-[19px]">0</div>
+        </div>
+        <button className="text-[16px] text-[#49557e] bg-transparent border-[tomato] border rounded-[50px] cursor-pointer py-2 px-6 hover:bg-[#fff4f2] transition-all duration-300">
+          Sign In
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
