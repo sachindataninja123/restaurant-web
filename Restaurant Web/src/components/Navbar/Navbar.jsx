@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setMenu] = useState("home");
@@ -8,34 +9,34 @@ const Navbar = () => {
     <div className="py-5 px-0 flex justify-between items-center">
       <img src={assets.logo} alt="" className="w-37.5 " />
       <ul className="flex list-none gap-5 uppercase text-[#49557e] ">
-        <li
+        <Link to="/"
           onClick={() => setMenu("home")}
           className={`${menu === "home" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
         >
           Home
-        </li>
-        <li
+        </Link>
+        <a href="#explore-menu"
           onClick={() => setMenu("menu")}
           className={`${menu === "menu" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
         >
           menu
-        </li>
-        <li
+        </a>
+        <a href="#app-download"
           onClick={() => setMenu("mobile-app")}
           className={`${menu === "mobile-app" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
         >
           mobile-app
-        </li>
-        <li
+        </a>
+        <a href="#contact-us"
           onClick={() => setMenu("contact-us")}
           className={`${menu === "contact-us" ? "border-b-2 pb-1 " : ""} cursor-pointer`}
         >
           contact-us
-        </li>
+        </a>
       </ul>
       <div className="flex items-center gap-8 ">
         <img src={assets.search_icon} alt="" />
-        <div className="relative"  >
+        <div className="relative">
           <img src={assets.basket_icon} alt="" />
           <div className="absolute -top-4 -right-2 text-[19px]">0</div>
         </div>

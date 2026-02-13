@@ -3,7 +3,7 @@ import { menu_list } from "../../assets/assets";
 
 const ExploreMenu = ({ category, setCategory }) => {
   return (
-    <div className="flex flex-col gap-5">
+    <div id="explore-menu" className="flex flex-col gap-5">
       <h1 className="text-3xl text-[#262626] font-semibold">
         Explore our menu
       </h1>
