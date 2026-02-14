@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItem, food_list, removeFromCart } = useContext(StoreContext);
+  const { cartItem, food_list, removeFromCart, getTotalCartAmount } =
+    useContext(StoreContext);
+
+  const navigate = useNavigate();
 
   return (
     <div className="mt-25">
@@ -49,33 +53,46 @@ const Cart = () => {
           <div>
             <div className="flex justify-between text-[#555]">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>Rs {getTotalCartAmount()}</p>
             </div>
             <hr className="text-[#eeecec]" />
 
             <div className="flex justify-between text-[#555]">
               <p>Delivery Fee</p>
-              <p>{3}</p>
+              <p>Rs {getTotalCartAmount() === 0 ? 0 : 40}</p>
             </div>
             <hr className="text-[#eeecec]" />
 
             <div className="flex justify-between text-[#555]">
               <p>Total</p>
-              <p>{0}</p>
+              <p>
+                Rs {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 40}
+              </p>
             </div>
             <hr className="text-[#eeecec]" />
           </div>
-          <button className="border-none text-[white] bg-[tomato] w-max(15vw,200px py-4 rounded-sm cursor-pointer">
-            PROCEED TO CHECKOUT
-          </button>
+          <div>
+            <button
+              onClick={() => navigate("/order")}
+              className="border-none text-[white] bg-[tomato] w-max(15vw,200px py-4 px-12 rounded-sm cursor-pointer active:scale-95"
+            >
+              PROCEED TO CHECKOUT
+            </button>
+          </div>
         </div>
 
         <div>
           <div>
             <p>If you have a promo code, Enter it here</p>
-            <div>
-              <input type="text" placeholder="Enter Promo code" />
-              <button>Submit</button>
+            <div className="mt-2.5 flex justify-between items-center bg-[#eaeaea] rounded-sm">
+              <input
+                className="bg-transparent border-none outline-none pl-2.5"
+                type="text"
+                placeholder="Enter Promo code"
+              />
+              <button className="w-[max(6vw,120px)] py-3 px-1 bg-black border-none text-white rounded-sm">
+                Submit
+              </button>
             </div>
           </div>
         </div>
